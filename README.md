@@ -1,4 +1,4 @@
-# MarkupAi Python Library
+# Markup AI Python Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fmarkupai%2Fmarkup-ai-python-sdk)
 [![pypi](https://img.shields.io/pypi/v/markup-ai-api)](https://pypi.python.org/pypi/markup-ai-api)

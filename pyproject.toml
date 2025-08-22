@@ -3,12 +3,12 @@ name = "markup-ai-api"
 
 [tool.poetry]
 name = "markup-ai-api"
-version = "0.0.5"
+version = "0.0.6"
 description = ""
 readme = "README.md"
 authors = []
 keywords = []
-
+license = "Apache-2.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
@@ -24,7 +24,8 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Operating System :: Microsoft :: Windows",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Typing :: Typed"
+    "Typing :: Typed",
+    "License :: OSI Approved :: Apache Software License"
 ]
 packages = [
     { include = "markup_ai", from = "src"}

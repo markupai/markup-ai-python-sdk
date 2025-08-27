@@ -41,7 +41,7 @@ class RawStyleChecksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WorkflowResponse]:
         """
-        Start a style and brand check workflow. Returns a workflow ID to use for polling results.
+        Analyze text for grammar, style, and clarity issues.
 
         Parameters
         ----------
@@ -66,7 +66,7 @@ class RawStyleChecksClient:
         Returns
         -------
         HttpResponse[WorkflowResponse]
-            Check run started successfully.
+            Request accepted.
         """
         _response = self._client_wrapper.httpx_client.request(
             "v1/style/checks",
@@ -98,9 +98,9 @@ class RawStyleChecksClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -158,7 +158,7 @@ class RawStyleChecksClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[StyleCheckResponse]:
         """
-        Retrieve the results of a style and brand check workflow. Returns `running` or `complete` status.
+        Retrieve style check results.
 
         Parameters
         ----------
@@ -170,7 +170,7 @@ class RawStyleChecksClient:
         Returns
         -------
         HttpResponse[StyleCheckResponse]
-            The style and brand check run results.
+            Style check results.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/style/checks/{jsonable_encoder(workflow_id)}",
@@ -191,9 +191,9 @@ class RawStyleChecksClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -263,7 +263,7 @@ class AsyncRawStyleChecksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WorkflowResponse]:
         """
-        Start a style and brand check workflow. Returns a workflow ID to use for polling results.
+        Analyze text for grammar, style, and clarity issues.
 
         Parameters
         ----------
@@ -288,7 +288,7 @@ class AsyncRawStyleChecksClient:
         Returns
         -------
         AsyncHttpResponse[WorkflowResponse]
-            Check run started successfully.
+            Request accepted.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "v1/style/checks",
@@ -320,9 +320,9 @@ class AsyncRawStyleChecksClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -380,7 +380,7 @@ class AsyncRawStyleChecksClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[StyleCheckResponse]:
         """
-        Retrieve the results of a style and brand check workflow. Returns `running` or `complete` status.
+        Retrieve style check results.
 
         Parameters
         ----------
@@ -392,7 +392,7 @@ class AsyncRawStyleChecksClient:
         Returns
         -------
         AsyncHttpResponse[StyleCheckResponse]
-            The style and brand check run results.
+            Style check results.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/style/checks/{jsonable_encoder(workflow_id)}",
@@ -413,9 +413,9 @@ class AsyncRawStyleChecksClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),

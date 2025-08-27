@@ -41,7 +41,7 @@ class StyleRewritesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand rewrite workflow. Returns a workflow ID to use for polling results.
+        Rewrite text with style corrections applied.
 
         Parameters
         ----------
@@ -66,7 +66,7 @@ class StyleRewritesClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -94,7 +94,7 @@ class StyleRewritesClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> RewriteResponse:
         """
-        Retrieve the results of a rewrite workflow. Returns `running` or `complete` status.
+        Retrieve rewrite results.
 
         Parameters
         ----------
@@ -106,7 +106,7 @@ class StyleRewritesClient:
         Returns
         -------
         RewriteResponse
-            The rewrite run results.
+            Rewrite results.
 
         Examples
         --------
@@ -149,7 +149,7 @@ class AsyncStyleRewritesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand rewrite workflow. Returns a workflow ID to use for polling results.
+        Rewrite text with style corrections applied.
 
         Parameters
         ----------
@@ -174,7 +174,7 @@ class AsyncStyleRewritesClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -210,7 +210,7 @@ class AsyncStyleRewritesClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> RewriteResponse:
         """
-        Retrieve the results of a rewrite workflow. Returns `running` or `complete` status.
+        Retrieve rewrite results.
 
         Parameters
         ----------
@@ -222,7 +222,7 @@ class AsyncStyleRewritesClient:
         Returns
         -------
         RewriteResponse
-            The rewrite run results.
+            Rewrite results.
 
         Examples
         --------

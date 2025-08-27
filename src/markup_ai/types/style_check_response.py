@@ -12,7 +12,7 @@ from .workflow_status import WorkflowStatus
 
 
 class StyleCheckResponse(UniversalBaseModel):
-    workflow_id: typing.Optional[str] = None
+    workflow_id: str
     status: typing.Optional[WorkflowStatus] = None
     scores: typing.Optional[ScoreOutput] = None
     issues: typing.Optional[typing.List[Issue]] = None

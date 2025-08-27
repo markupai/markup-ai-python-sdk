@@ -2,7 +2,9 @@
 
 # isort: skip_file
 
+from .analysis_score import AnalysisScore
 from .check_options import CheckOptions
+from .clarity_category import ClarityCategory
 from .clarity_score import ClarityScore
 from .dialects import Dialects
 from .error_response import ErrorResponse
@@ -36,7 +38,9 @@ from .workflow_response import WorkflowResponse
 from .workflow_status import WorkflowStatus
 
 __all__ = [
+    "AnalysisScore",
     "CheckOptions",
+    "ClarityCategory",
     "ClarityScore",
     "Dialects",
     "ErrorResponse",

@@ -3,7 +3,9 @@
 # isort: skip_file
 
 from .types import (
+    AnalysisScore,
     CheckOptions,
+    ClarityCategory,
     ClarityScore,
     Dialects,
     ErrorResponse,
@@ -36,15 +38,24 @@ from .types import (
     WorkflowResponse,
     WorkflowStatus,
 )
-from .errors import ContentTooLargeError, ForbiddenError, InternalServerError, NotFoundError, UnprocessableEntityError
+from .errors import (
+    ContentTooLargeError,
+    ForbiddenError,
+    InternalServerError,
+    NotFoundError,
+    UnauthorizedError,
+    UnprocessableEntityError,
+)
 from . import style_checks, style_guides, style_rewrites, style_suggestions
 from .client import AsyncMarkupAI, MarkupAI
 from .environment import MarkupAIEnvironment
 from .version import __version__
 
 __all__ = [
+    "AnalysisScore",
     "AsyncMarkupAI",
     "CheckOptions",
+    "ClarityCategory",
     "ClarityScore",
     "ContentTooLargeError",
     "Dialects",
@@ -79,6 +90,7 @@ __all__ = [
     "ToneCategory",
     "ToneScore",
     "Tones",
+    "UnauthorizedError",
     "UnprocessableEntityError",
     "WebhookResponse",
     "WorkflowResponse",

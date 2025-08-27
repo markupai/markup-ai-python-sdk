@@ -2,6 +2,7 @@
 
 import typing
 
+from .clarity_category import ClarityCategory
 from .grammar_category import GrammarCategory
 from .sentence_length_category import SentenceLengthCategory
 from .sentence_structure_category import SentenceStructureCategory
@@ -18,4 +19,5 @@ Subcategory = typing.Union[
     ToneCategory,
     StyleGuideCategory,
     TermReplaceCategory,
+    ClarityCategory,
 ]

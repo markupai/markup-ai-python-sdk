@@ -92,7 +92,9 @@ from markup_ai import MarkupAI
 client = MarkupAI(
     token="YOUR_TOKEN",
 )
-client.style_guides.create_style_guide()
+client.style_guides.create_style_guide(
+    name="name",
+)
 
 ```
 </dd>
@@ -118,7 +120,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**name:** `typing.Optional[str]` — A friendly name for your style guide to help you identify it later. If left empty, we'll generate one for you.
+**name:** `str` — A friendly name for your style guide to help you identify it later.
     
 </dd>
 </dl>
@@ -392,7 +394,6 @@ client = MarkupAI(
 )
 client.style_checks.create_style_check(
     dialect="american_english",
-    tone="academic",
     style_guide="style_guide",
 )
 
@@ -428,7 +429,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**tone:** `Tones` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
+**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
     
 </dd>
 </dl>
@@ -436,7 +437,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+**tone:** `typing.Optional[Tones]` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
     
 </dd>
 </dl>
@@ -569,7 +570,6 @@ client = MarkupAI(
 )
 client.style_suggestions.create_style_suggestion(
     dialect="american_english",
-    tone="academic",
     style_guide="style_guide",
 )
 
@@ -605,7 +605,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**tone:** `Tones` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
+**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
     
 </dd>
 </dl>
@@ -613,7 +613,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+**tone:** `typing.Optional[Tones]` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
     
 </dd>
 </dl>
@@ -746,7 +746,6 @@ client = MarkupAI(
 )
 client.style_rewrites.create_style_rewrite(
     dialect="american_english",
-    tone="academic",
     style_guide="style_guide",
 )
 
@@ -782,7 +781,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**tone:** `Tones` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
+**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
     
 </dd>
 </dl>
@@ -790,7 +789,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-**style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+**tone:** `typing.Optional[Tones]` — The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
     
 </dd>
 </dl>

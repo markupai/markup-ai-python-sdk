@@ -4,10 +4,16 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .grammar_score import GrammarScore
+from .style_guide_score import StyleGuideScore
+from .terminology_score import TerminologyScore
 
 
 class QualityScore(UniversalBaseModel):
     score: typing.Optional[int] = None
+    grammar: typing.Optional[GrammarScore] = None
+    style_guide: typing.Optional[StyleGuideScore] = None
+    terminology: typing.Optional[TerminologyScore] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

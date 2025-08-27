@@ -4,14 +4,13 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .clarity_score import ClarityScore
+from .tone_score import ToneScore
 
 
-class ToneScore(UniversalBaseModel):
-    score: typing.Optional[int] = None
-    informality: typing.Optional[float] = None
-    liveliness: typing.Optional[float] = None
-    informality_alignment: typing.Optional[float] = None
-    liveliness_alignment: typing.Optional[float] = None
+class AnalysisScore(UniversalBaseModel):
+    clarity: typing.Optional[ClarityScore] = None
+    tone: typing.Optional[ToneScore] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

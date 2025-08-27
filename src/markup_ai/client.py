@@ -25,7 +25,7 @@ class MarkupAI:
 
 
 
-        Defaults to MarkupAIEnvironment.PRODUCTION
+        Defaults to MarkupAIEnvironment.DEFAULT
 
 
 
@@ -55,7 +55,7 @@ class MarkupAI:
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: MarkupAIEnvironment = MarkupAIEnvironment.PRODUCTION,
+        environment: MarkupAIEnvironment = MarkupAIEnvironment.DEFAULT,
         token: typing.Union[str, typing.Callable[[], str]],
         headers: typing.Optional[typing.Dict[str, str]] = None,
         timeout: typing.Optional[float] = None,
@@ -96,7 +96,7 @@ class AsyncMarkupAI:
 
 
 
-        Defaults to MarkupAIEnvironment.PRODUCTION
+        Defaults to MarkupAIEnvironment.DEFAULT
 
 
 
@@ -126,7 +126,7 @@ class AsyncMarkupAI:
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: MarkupAIEnvironment = MarkupAIEnvironment.PRODUCTION,
+        environment: MarkupAIEnvironment = MarkupAIEnvironment.DEFAULT,
         token: typing.Union[str, typing.Callable[[], str]],
         headers: typing.Optional[typing.Dict[str, str]] = None,
         timeout: typing.Optional[float] = None,

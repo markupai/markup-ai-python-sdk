@@ -11,8 +11,10 @@ from ..core.jsonable_encoder import jsonable_encoder
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from ..errors.content_too_large_error import ContentTooLargeError
+from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.dialects import Dialects
 from ..types.error_response import ErrorResponse
@@ -33,8 +35,8 @@ class RawStyleRewritesClient:
         *,
         file_upload: core.File,
         dialect: Dialects,
-        tone: Tones,
         style_guide: str,
+        tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WorkflowResponse]:
@@ -49,11 +51,11 @@ class RawStyleRewritesClient:
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
-        tone : Tones
-            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
-
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        tone : typing.Optional[Tones]
+            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
 
         webhook_url : typing.Optional[str]
             A URL that results will be POSTed to once the process completes.
@@ -92,13 +94,35 @@ class RawStyleRewritesClient:
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
-            if _response.status_code == 413:
-                raise ContentTooLargeError(
+            if _response.status_code == 401:
+                raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         typing.Optional[typing.Any],
                         parse_obj_as(
                             type_=typing.Optional[typing.Any],  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -163,6 +187,28 @@ class RawStyleRewritesClient:
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Optional[typing.Any],
+                        parse_obj_as(
+                            type_=typing.Optional[typing.Any],  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 404:
                 raise NotFoundError(
                     headers=dict(_response.headers),
@@ -211,8 +257,8 @@ class AsyncRawStyleRewritesClient:
         *,
         file_upload: core.File,
         dialect: Dialects,
-        tone: Tones,
         style_guide: str,
+        tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WorkflowResponse]:
@@ -227,11 +273,11 @@ class AsyncRawStyleRewritesClient:
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
-        tone : Tones
-            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
-
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        tone : typing.Optional[Tones]
+            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
 
         webhook_url : typing.Optional[str]
             A URL that results will be POSTed to once the process completes.
@@ -270,13 +316,35 @@ class AsyncRawStyleRewritesClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
-            if _response.status_code == 413:
-                raise ContentTooLargeError(
+            if _response.status_code == 401:
+                raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         typing.Optional[typing.Any],
                         parse_obj_as(
                             type_=typing.Optional[typing.Any],  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 413:
+                raise ContentTooLargeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -341,6 +409,28 @@ class AsyncRawStyleRewritesClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Optional[typing.Any],
+                        parse_obj_as(
+                            type_=typing.Optional[typing.Any],  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        ErrorResponse,
+                        parse_obj_as(
+                            type_=ErrorResponse,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 404:
                 raise NotFoundError(
                     headers=dict(_response.headers),

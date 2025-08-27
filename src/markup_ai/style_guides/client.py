@@ -41,7 +41,7 @@ class StyleGuidesClient:
         Returns
         -------
         typing.List[StyleGuideResponse]
-            Successful Response
+            Successfully retrieved style guides.
 
         Examples
         --------
@@ -56,11 +56,7 @@ class StyleGuidesClient:
         return _response.data
 
     def create_style_guide(
-        self,
-        *,
-        file_upload: core.File,
-        name: typing.Optional[str] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> StyleGuideResponse:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -70,8 +66,8 @@ class StyleGuidesClient:
         file_upload : core.File
             See core.File for more documentation
 
-        name : typing.Optional[str]
-            A friendly name for your style guide to help you identify it later. If left empty, we'll generate one for you.
+        name : str
+            A friendly name for your style guide to help you identify it later.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -79,7 +75,7 @@ class StyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            Style guide creation started successfully.
 
         Examples
         --------
@@ -88,7 +84,9 @@ class StyleGuidesClient:
         client = MarkupAI(
             token="YOUR_TOKEN",
         )
-        client.style_guides.create_style_guide()
+        client.style_guides.create_style_guide(
+            name="name",
+        )
         """
         _response = self._raw_client.create_style_guide(
             file_upload=file_upload, name=name, request_options=request_options
@@ -112,7 +110,7 @@ class StyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            Successfully retrieved the style guide.
 
         Examples
         --------
@@ -180,7 +178,7 @@ class StyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            The style guide was updated successfully.
 
         Examples
         --------
@@ -227,7 +225,7 @@ class AsyncStyleGuidesClient:
         Returns
         -------
         typing.List[StyleGuideResponse]
-            Successful Response
+            Successfully retrieved style guides.
 
         Examples
         --------
@@ -250,11 +248,7 @@ class AsyncStyleGuidesClient:
         return _response.data
 
     async def create_style_guide(
-        self,
-        *,
-        file_upload: core.File,
-        name: typing.Optional[str] = OMIT,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
     ) -> StyleGuideResponse:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -264,8 +258,8 @@ class AsyncStyleGuidesClient:
         file_upload : core.File
             See core.File for more documentation
 
-        name : typing.Optional[str]
-            A friendly name for your style guide to help you identify it later. If left empty, we'll generate one for you.
+        name : str
+            A friendly name for your style guide to help you identify it later.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -273,7 +267,7 @@ class AsyncStyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            Style guide creation started successfully.
 
         Examples
         --------
@@ -287,7 +281,9 @@ class AsyncStyleGuidesClient:
 
 
         async def main() -> None:
-            await client.style_guides.create_style_guide()
+            await client.style_guides.create_style_guide(
+                name="name",
+            )
 
 
         asyncio.run(main())
@@ -314,7 +310,7 @@ class AsyncStyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            Successfully retrieved the style guide.
 
         Examples
         --------
@@ -398,7 +394,7 @@ class AsyncStyleGuidesClient:
         Returns
         -------
         StyleGuideResponse
-            Successful Response
+            The style guide was updated successfully.
 
         Examples
         --------

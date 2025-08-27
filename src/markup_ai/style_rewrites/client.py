@@ -35,8 +35,8 @@ class StyleRewritesClient:
         *,
         file_upload: core.File,
         dialect: Dialects,
-        tone: Tones,
         style_guide: str,
+        tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
@@ -51,11 +51,11 @@ class StyleRewritesClient:
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
-        tone : Tones
-            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
-
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        tone : typing.Optional[Tones]
+            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
 
         webhook_url : typing.Optional[str]
             A URL that results will be POSTed to once the process completes.
@@ -77,15 +77,14 @@ class StyleRewritesClient:
         )
         client.style_rewrites.create_style_rewrite(
             dialect="american_english",
-            tone="academic",
             style_guide="style_guide",
         )
         """
         _response = self._raw_client.create_style_rewrite(
             file_upload=file_upload,
             dialect=dialect,
-            tone=tone,
             style_guide=style_guide,
+            tone=tone,
             webhook_url=webhook_url,
             request_options=request_options,
         )
@@ -144,8 +143,8 @@ class AsyncStyleRewritesClient:
         *,
         file_upload: core.File,
         dialect: Dialects,
-        tone: Tones,
         style_guide: str,
+        tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
@@ -160,11 +159,11 @@ class AsyncStyleRewritesClient:
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
-        tone : Tones
-            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
-
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        tone : typing.Optional[Tones]
+            The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
 
         webhook_url : typing.Optional[str]
             A URL that results will be POSTed to once the process completes.
@@ -191,7 +190,6 @@ class AsyncStyleRewritesClient:
         async def main() -> None:
             await client.style_rewrites.create_style_rewrite(
                 dialect="american_english",
-                tone="academic",
                 style_guide="style_guide",
             )
 
@@ -201,8 +199,8 @@ class AsyncStyleRewritesClient:
         _response = await self._raw_client.create_style_rewrite(
             file_upload=file_upload,
             dialect=dialect,
-            tone=tone,
             style_guide=style_guide,
+            tone=tone,
             webhook_url=webhook_url,
             request_options=request_options,
         )

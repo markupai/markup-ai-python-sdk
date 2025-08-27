@@ -7,15 +7,13 @@ from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
 class ClarityScore(UniversalBaseModel):
-    average_sentence_length: typing.Optional[float] = None
-    flesch_kincaid_grade: typing.Optional[float] = None
-    flesch_reading_ease: typing.Optional[float] = None
-    lexical_diversity: typing.Optional[float] = None
     score: typing.Optional[int] = None
+    flesch_reading_ease: typing.Optional[float] = None
     sentence_complexity: typing.Optional[float] = None
-    sentence_count: typing.Optional[int] = None
     vocabulary_complexity: typing.Optional[float] = None
+    sentence_count: typing.Optional[int] = None
     word_count: typing.Optional[int] = None
+    average_sentence_length: typing.Optional[float] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

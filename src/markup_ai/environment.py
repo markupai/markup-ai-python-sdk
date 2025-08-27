@@ -4,4 +4,4 @@ import enum
 
 
 class MarkupAIEnvironment(enum.Enum):
-    PRODUCTION = "https://app.acrolinx.cloud"
+    DEFAULT = "https://api.markup.ai"

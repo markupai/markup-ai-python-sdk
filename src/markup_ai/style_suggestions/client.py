@@ -41,7 +41,7 @@ class StyleSuggestionsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand suggestion workflow. Returns a workflow ID to use for polling results.
+        Get suggested corrections for text.
 
         Parameters
         ----------
@@ -66,7 +66,7 @@ class StyleSuggestionsClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -94,7 +94,7 @@ class StyleSuggestionsClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> SuggestionResponse:
         """
-        Retrieve the results of a style and brand suggestion workflow. Returns `running` or `complete` status.
+        Retrieve suggestion results.
 
         Parameters
         ----------
@@ -106,7 +106,7 @@ class StyleSuggestionsClient:
         Returns
         -------
         SuggestionResponse
-            The suggestion run results.
+            Suggestion results.
 
         Examples
         --------
@@ -149,7 +149,7 @@ class AsyncStyleSuggestionsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand suggestion workflow. Returns a workflow ID to use for polling results.
+        Get suggested corrections for text.
 
         Parameters
         ----------
@@ -174,7 +174,7 @@ class AsyncStyleSuggestionsClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -210,7 +210,7 @@ class AsyncStyleSuggestionsClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> SuggestionResponse:
         """
-        Retrieve the results of a style and brand suggestion workflow. Returns `running` or `complete` status.
+        Retrieve suggestion results.
 
         Parameters
         ----------
@@ -222,7 +222,7 @@ class AsyncStyleSuggestionsClient:
         Returns
         -------
         SuggestionResponse
-            The suggestion run results.
+            Suggestion results.
 
         Examples
         --------

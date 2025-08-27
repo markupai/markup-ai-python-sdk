@@ -41,7 +41,7 @@ class StyleChecksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand check workflow. Returns a workflow ID to use for polling results.
+        Analyze text for grammar, style, and clarity issues.
 
         Parameters
         ----------
@@ -66,7 +66,7 @@ class StyleChecksClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -94,7 +94,7 @@ class StyleChecksClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> StyleCheckResponse:
         """
-        Retrieve the results of a style and brand check workflow. Returns `running` or `complete` status.
+        Retrieve style check results.
 
         Parameters
         ----------
@@ -106,7 +106,7 @@ class StyleChecksClient:
         Returns
         -------
         StyleCheckResponse
-            The style and brand check run results.
+            Style check results.
 
         Examples
         --------
@@ -149,7 +149,7 @@ class AsyncStyleChecksClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> WorkflowResponse:
         """
-        Start a style and brand check workflow. Returns a workflow ID to use for polling results.
+        Analyze text for grammar, style, and clarity issues.
 
         Parameters
         ----------
@@ -174,7 +174,7 @@ class AsyncStyleChecksClient:
         Returns
         -------
         WorkflowResponse
-            Check run started successfully.
+            Request accepted.
 
         Examples
         --------
@@ -210,7 +210,7 @@ class AsyncStyleChecksClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> StyleCheckResponse:
         """
-        Retrieve the results of a style and brand check workflow. Returns `running` or `complete` status.
+        Retrieve style check results.
 
         Parameters
         ----------
@@ -222,7 +222,7 @@ class AsyncStyleChecksClient:
         Returns
         -------
         StyleCheckResponse
-            The style and brand check run results.
+            Style check results.
 
         Examples
         --------

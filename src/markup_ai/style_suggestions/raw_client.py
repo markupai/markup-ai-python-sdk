@@ -41,7 +41,7 @@ class RawStyleSuggestionsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[WorkflowResponse]:
         """
-        Start a style and brand suggestion workflow. Returns a workflow ID to use for polling results.
+        Get suggested corrections for text.
 
         Parameters
         ----------
@@ -66,7 +66,7 @@ class RawStyleSuggestionsClient:
         Returns
         -------
         HttpResponse[WorkflowResponse]
-            Check run started successfully.
+            Request accepted.
         """
         _response = self._client_wrapper.httpx_client.request(
             "v1/style/suggestions",
@@ -98,9 +98,9 @@ class RawStyleSuggestionsClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -158,7 +158,7 @@ class RawStyleSuggestionsClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[SuggestionResponse]:
         """
-        Retrieve the results of a style and brand suggestion workflow. Returns `running` or `complete` status.
+        Retrieve suggestion results.
 
         Parameters
         ----------
@@ -170,7 +170,7 @@ class RawStyleSuggestionsClient:
         Returns
         -------
         HttpResponse[SuggestionResponse]
-            The suggestion run results.
+            Suggestion results.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/style/suggestions/{jsonable_encoder(workflow_id)}",
@@ -191,9 +191,9 @@ class RawStyleSuggestionsClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -263,7 +263,7 @@ class AsyncRawStyleSuggestionsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[WorkflowResponse]:
         """
-        Start a style and brand suggestion workflow. Returns a workflow ID to use for polling results.
+        Get suggested corrections for text.
 
         Parameters
         ----------
@@ -288,7 +288,7 @@ class AsyncRawStyleSuggestionsClient:
         Returns
         -------
         AsyncHttpResponse[WorkflowResponse]
-            Check run started successfully.
+            Request accepted.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "v1/style/suggestions",
@@ -320,9 +320,9 @@ class AsyncRawStyleSuggestionsClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -380,7 +380,7 @@ class AsyncRawStyleSuggestionsClient:
         self, workflow_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[SuggestionResponse]:
         """
-        Retrieve the results of a style and brand suggestion workflow. Returns `running` or `complete` status.
+        Retrieve suggestion results.
 
         Parameters
         ----------
@@ -392,7 +392,7 @@ class AsyncRawStyleSuggestionsClient:
         Returns
         -------
         AsyncHttpResponse[SuggestionResponse]
-            The suggestion run results.
+            Suggestion results.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/style/suggestions/{jsonable_encoder(workflow_id)}",
@@ -413,9 +413,9 @@ class AsyncRawStyleSuggestionsClient:
                 raise UnauthorizedError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        typing.Optional[typing.Any],
+                        ErrorResponse,
                         parse_obj_as(
-                            type_=typing.Optional[typing.Any],  # type: ignore
+                            type_=ErrorResponse,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),

@@ -372,7 +372,7 @@ client.style_guides.update_style_guide(
 <dl>
 <dd>
 
-Start a style and brand check workflow. Returns a workflow ID to use for polling results.
+Analyze text for grammar, style, and clarity issues.
 </dd>
 </dl>
 </dd>
@@ -477,7 +477,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-Retrieve the results of a style and brand check workflow. Returns `running` or `complete` status.
+Retrieve style check results.
 </dd>
 </dl>
 </dd>
@@ -548,7 +548,7 @@ client.style_checks.get_style_check(
 <dl>
 <dd>
 
-Start a style and brand suggestion workflow. Returns a workflow ID to use for polling results.
+Get suggested corrections for text.
 </dd>
 </dl>
 </dd>
@@ -653,7 +653,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-Retrieve the results of a style and brand suggestion workflow. Returns `running` or `complete` status.
+Retrieve suggestion results.
 </dd>
 </dl>
 </dd>
@@ -724,7 +724,7 @@ client.style_suggestions.get_style_suggestion(
 <dl>
 <dd>
 
-Start a style and brand rewrite workflow. Returns a workflow ID to use for polling results.
+Rewrite text with style corrections applied.
 </dd>
 </dl>
 </dd>
@@ -829,7 +829,7 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
-Retrieve the results of a rewrite workflow. Returns `running` or `complete` status.
+Retrieve rewrite results.
 </dd>
 </dl>
 </dd>

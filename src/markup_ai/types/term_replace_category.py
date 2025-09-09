@@ -2,4 +2,4 @@
 
 import typing
 
-TermReplaceCategory = typing.Union[typing.Literal["term", "other"], typing.Any]
+TermReplaceCategory = typing.Union[typing.Literal["Terminology", "other"], typing.Any]

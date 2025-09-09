@@ -4,17 +4,12 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .config_options import ConfigOptions
-from .rewrite_content import RewriteContent
-from .suggestion_original_content import SuggestionOriginalContent
-from .workflow_info import WorkflowInfo
+from .score_output import ScoreOutput
 
 
-class RewriteResponse(UniversalBaseModel):
-    config: typing.Optional[ConfigOptions] = None
-    original: typing.Optional[SuggestionOriginalContent] = None
-    rewrite: typing.Optional[RewriteContent] = None
-    workflow: WorkflowInfo
+class RewriteContent(UniversalBaseModel):
+    text: typing.Optional[str] = None
+    scores: typing.Optional[ScoreOutput] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

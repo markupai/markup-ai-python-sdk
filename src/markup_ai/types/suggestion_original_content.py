@@ -4,15 +4,13 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .dialects import Dialects
-from .style_guide import StyleGuide
-from .tones import Tones
+from .score_output import ScoreOutput
+from .suggestion import Suggestion
 
 
-class CheckOptions(UniversalBaseModel):
-    style_guide: typing.Optional[StyleGuide] = None
-    dialect: typing.Optional[Dialects] = None
-    tone: typing.Optional[Tones] = None
+class SuggestionOriginalContent(UniversalBaseModel):
+    issues: typing.Optional[typing.List[Suggestion]] = None
+    scores: typing.Optional[ScoreOutput] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

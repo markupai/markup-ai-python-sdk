@@ -2,4 +2,4 @@
 
 import typing
 
-IssueCategory = typing.Union[typing.Literal["clarity", "grammar", "style_guide", "terminology", "tone"], typing.Any]
+IssueCategory = typing.Union[typing.Literal["clarity", "grammar", "consistency", "terminology", "tone"], typing.Any]

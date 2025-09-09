@@ -26,7 +26,7 @@ from markup_ai import MarkupAI
 client = MarkupAI(
     token="YOUR_TOKEN",
 )
-client.style_guides.create_style_guide()
+client.style_guides.list_style_guides()
 ```
 
 ## Async Client
@@ -44,7 +44,7 @@ client = AsyncMarkupAI(
 
 
 async def main() -> None:
-    await client.style_guides.create_style_guide()
+    await client.style_guides.list_style_guides()
 
 
 asyncio.run(main())
@@ -59,7 +59,7 @@ will be thrown.
 from markup_ai.core.api_error import ApiError
 
 try:
-    client.style_guides.create_style_guide(...)
+    client.style_guides.list_style_guides(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -78,7 +78,7 @@ from markup_ai import MarkupAI
 client = MarkupAI(
     ...,
 )
-response = client.style_guides.with_raw_response.create_style_guide(...)
+response = client.style_guides.with_raw_response.list_style_guides(...)
 print(response.headers)  # access the response headers
 print(response.data)  # access the underlying object
 ```
@@ -98,7 +98,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.style_guides.create_style_guide(..., request_options={
+client.style_guides.list_style_guides(..., request_options={
     "max_retries": 1
 })
 ```
@@ -118,7 +118,7 @@ client = MarkupAI(
 
 
 # Override timeout for a specific method
-client.style_guides.create_style_guide(..., request_options={
+client.style_guides.list_style_guides(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

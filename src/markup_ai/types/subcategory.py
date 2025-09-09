@@ -3,21 +3,9 @@
 import typing
 
 from .clarity_category import ClarityCategory
+from .consistency_category import ConsistencyCategory
 from .grammar_category import GrammarCategory
-from .sentence_length_category import SentenceLengthCategory
-from .sentence_structure_category import SentenceStructureCategory
-from .simple_vocab_category import SimpleVocabCategory
-from .style_guide_category import StyleGuideCategory
 from .term_replace_category import TermReplaceCategory
 from .tone_category import ToneCategory
 
-Subcategory = typing.Union[
-    GrammarCategory,
-    SimpleVocabCategory,
-    SentenceStructureCategory,
-    SentenceLengthCategory,
-    ToneCategory,
-    StyleGuideCategory,
-    TermReplaceCategory,
-    ClarityCategory,
-]
+Subcategory = typing.Union[GrammarCategory, ClarityCategory, ToneCategory, ConsistencyCategory, TermReplaceCategory]

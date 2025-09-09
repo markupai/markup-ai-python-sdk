@@ -3,5 +3,15 @@
 import typing
 
 GrammarCategory = typing.Union[
-    typing.Literal["sva_pronoun", "punct_cap", "spelling", "syntax", "verbs", "word_usage", "other"], typing.Any
+    typing.Literal[
+        "Grammar Agreement",
+        "Punctuation",
+        "Capitalization",
+        "Spelling",
+        "Sentence Structure",
+        "Verb Forms",
+        "Context Fit",
+        "other",
+    ],
+    typing.Any,
 ]

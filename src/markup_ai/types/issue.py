@@ -5,6 +5,7 @@ import typing
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from .issue_category import IssueCategory
+from .position import Position
 from .subcategory import Subcategory
 
 
@@ -14,9 +15,9 @@ class Issue(UniversalBaseModel):
     The original text
     """
 
-    char_index: int = pydantic.Field()
+    position: Position = pydantic.Field()
     """
-    The start index of the change
+    Position details of the issue
     """
 
     subcategory: Subcategory = pydantic.Field()

@@ -3,5 +3,13 @@
 import typing
 
 ToneCategory = typing.Union[
-    typing.Literal["word_choice", "syntax", "punctuation", "discourse_features", "implicit_style", "other"], typing.Any
+    typing.Literal[
+        "Tone-Aligned Wording",
+        "Tone-Shaping Structure",
+        "Tone-Signal Punctuation",
+        "Transitions and Flow",
+        "Additional Tone Changes",
+        "other",
+    ],
+    typing.Any,
 ]

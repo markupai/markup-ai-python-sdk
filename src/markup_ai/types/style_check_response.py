@@ -4,23 +4,15 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .check_options import CheckOptions
-from .issue import Issue
-from .score_output import ScoreOutput
-from .webhook_response import WebhookResponse
-from .workflow_status import WorkflowStatus
+from .config_options import ConfigOptions
+from .original_content import OriginalContent
+from .workflow_info import WorkflowInfo
 
 
 class StyleCheckResponse(UniversalBaseModel):
-    workflow_id: str
-    status: typing.Optional[WorkflowStatus] = None
-    scores: typing.Optional[ScoreOutput] = None
-    issues: typing.Optional[typing.List[Issue]] = None
-    check_options: typing.Optional[CheckOptions] = None
-    webhook_response: typing.Optional[WebhookResponse] = pydantic.Field(default=None)
-    """
-    The status code received and URL used when sending the webhook if a webhook URL was included when starting the process.
-    """
+    config: typing.Optional[ConfigOptions] = None
+    original: typing.Optional[OriginalContent] = None
+    workflow: WorkflowInfo
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -2,4 +2,18 @@
 
 import typing
 
-ClarityCategory = typing.Literal["clarity"]
+ClarityCategory = typing.Union[
+    typing.Literal[
+        "Simpler Words",
+        "Complex Verb Tenses",
+        "Hidden Verbs",
+        "Direct Statements",
+        "Passive Voice",
+        "Phrasal Verbs",
+        "Formal Grammar Forms",
+        "Unnecessary Words",
+        "Sentence Splitting",
+        "Concise Wording",
+    ],
+    typing.Any,
+]

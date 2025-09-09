@@ -6,9 +6,11 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class StyleGuideScore(UniversalBaseModel):
-    score: typing.Optional[int] = None
-    issues: typing.Optional[int] = None
+class Position(UniversalBaseModel):
+    start_index: int = pydantic.Field()
+    """
+    The start index of the issue in the text
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

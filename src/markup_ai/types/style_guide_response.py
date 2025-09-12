@@ -40,9 +40,9 @@ class StyleGuideResponse(UniversalBaseModel):
     The ID of the user who last updated the style guide. If null, the style guide has never been updated.
     """
 
-    prompt: str = pydantic.Field()
+    summary: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The prompt used to apply a style guide to a document. This should not be displayed to the user.
+    Summarizes the rules and guidelines which will be applied by this style guide.
     """
 
     if IS_PYDANTIC_V2:

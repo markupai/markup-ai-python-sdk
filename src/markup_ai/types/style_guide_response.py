@@ -42,7 +42,7 @@ class StyleGuideResponse(UniversalBaseModel):
 
     summary: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Summarizes the rules and guidelines which will be applied by this style guide.
+    User-friendly summary of the style guide's contents and characteristics
     """
 
     if IS_PYDANTIC_V2:

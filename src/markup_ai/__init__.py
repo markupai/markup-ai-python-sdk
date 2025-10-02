@@ -49,6 +49,7 @@ if typing.TYPE_CHECKING:
         ForbiddenError,
         InternalServerError,
         NotFoundError,
+        TooManyRequestsError,
         UnauthorizedError,
         UnprocessableEntityError,
     )
@@ -96,6 +97,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ToneCategory": ".types",
     "ToneScore": ".types",
     "Tones": ".types",
+    "TooManyRequestsError": ".errors",
     "UnauthorizedError": ".errors",
     "UnprocessableEntityError": ".errors",
     "WebhookResponse": ".types",
@@ -169,6 +171,7 @@ __all__ = [
     "ToneCategory",
     "ToneScore",
     "Tones",
+    "TooManyRequestsError",
     "UnauthorizedError",
     "UnprocessableEntityError",
     "WebhookResponse",

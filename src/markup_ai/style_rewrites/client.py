@@ -33,9 +33,9 @@ class StyleRewritesClient:
     def create_style_rewrite(
         self,
         *,
-        file_upload: core.File,
         dialect: Dialects,
         style_guide: str,
+        file_upload: core.File,
         tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -45,14 +45,14 @@ class StyleRewritesClient:
 
         Parameters
         ----------
-        file_upload : core.File
-            See core.File for more documentation
-
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        file_upload : core.File
+            See core.File for more documentation
 
         tone : typing.Optional[Tones]
             The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
@@ -81,9 +81,9 @@ class StyleRewritesClient:
         )
         """
         _response = self._raw_client.create_style_rewrite(
-            file_upload=file_upload,
             dialect=dialect,
             style_guide=style_guide,
+            file_upload=file_upload,
             tone=tone,
             webhook_url=webhook_url,
             request_options=request_options,
@@ -141,9 +141,9 @@ class AsyncStyleRewritesClient:
     async def create_style_rewrite(
         self,
         *,
-        file_upload: core.File,
         dialect: Dialects,
         style_guide: str,
+        file_upload: core.File,
         tone: typing.Optional[Tones] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -153,14 +153,14 @@ class AsyncStyleRewritesClient:
 
         Parameters
         ----------
-        file_upload : core.File
-            See core.File for more documentation
-
         dialect : Dialects
             The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
 
         style_guide : str
             The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+
+        file_upload : core.File
+            See core.File for more documentation
 
         tone : typing.Optional[Tones]
             The tone variation you're aiming for. Options include formal, academic, casual, and other tone variations to match your content goals.
@@ -197,9 +197,9 @@ class AsyncStyleRewritesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.create_style_rewrite(
-            file_upload=file_upload,
             dialect=dialect,
             style_guide=style_guide,
+            file_upload=file_upload,
             tone=tone,
             webhook_url=webhook_url,
             request_options=request_options,

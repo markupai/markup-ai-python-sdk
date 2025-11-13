@@ -16,6 +16,7 @@ from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
+from ..types.base_style_guide_type import BaseStyleGuideType
 from ..types.error_response import ErrorResponse
 from ..types.style_guide_response import StyleGuideResponse
 
@@ -108,7 +109,12 @@ class RawStyleGuidesClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def create_style_guide(
-        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        file_upload: core.File,
+        name: str,
+        base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StyleGuideResponse]:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -120,6 +126,9 @@ class RawStyleGuidesClient:
 
         name : str
             A friendly name for your style guide to help you identify it later.
+
+        base_style_guide : typing.Optional[BaseStyleGuideType]
+            The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -134,6 +143,7 @@ class RawStyleGuidesClient:
             method="POST",
             data={
                 "name": name,
+                "base_style_guide": base_style_guide,
             },
             files={
                 "file_upload": file_upload,
@@ -582,7 +592,12 @@ class AsyncRawStyleGuidesClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def create_style_guide(
-        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        file_upload: core.File,
+        name: str,
+        base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StyleGuideResponse]:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -594,6 +609,9 @@ class AsyncRawStyleGuidesClient:
 
         name : str
             A friendly name for your style guide to help you identify it later.
+
+        base_style_guide : typing.Optional[BaseStyleGuideType]
+            The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -608,6 +626,7 @@ class AsyncRawStyleGuidesClient:
             method="POST",
             data={
                 "name": name,
+                "base_style_guide": base_style_guide,
             },
             files={
                 "file_upload": file_upload,

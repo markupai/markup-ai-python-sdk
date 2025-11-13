@@ -5,6 +5,7 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .base_style_guide_type import BaseStyleGuideType
 from .style_guide_status import StyleGuideStatus
 
 
@@ -43,6 +44,11 @@ class StyleGuideResponse(UniversalBaseModel):
     summary: typing.Optional[str] = pydantic.Field(default=None)
     """
     User-friendly summary of the style guide's contents and characteristics
+    """
+
+    base_style_guide_type: typing.Optional[BaseStyleGuideType] = pydantic.Field(default=None)
+    """
+    The base style guide type that this style guide extends (AP, Chicago, or Microsoft).
     """
 
     if IS_PYDANTIC_V2:

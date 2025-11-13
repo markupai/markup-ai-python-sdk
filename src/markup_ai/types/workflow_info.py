@@ -20,6 +20,11 @@ class WorkflowInfo(UniversalBaseModel):
     API version
     """
 
+    filename: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The original name of the file passed into the workflow
+    """
+
     generated_at: typing.Optional[dt.datetime] = pydantic.Field(default=None)
     """
     UTC timestamp when the result was generated

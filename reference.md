@@ -128,6 +128,14 @@ core.File` — See core.File for more documentation
 <dl>
 <dd>
 
+**base_style_guide:** `typing.Optional[BaseStyleGuideType]` — The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -411,16 +419,6 @@ client.style_checks.create_style_check(
 <dl>
 <dd>
 
-**file_upload:** `from __future__ import annotations
-
-core.File` — See core.File for more documentation
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **dialect:** `Dialects` — The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
     
 </dd>
@@ -430,6 +428,16 @@ core.File` — See core.File for more documentation
 <dd>
 
 **style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**file_upload:** `from __future__ import annotations
+
+core.File` — See core.File for more documentation
     
 </dd>
 </dl>
@@ -587,16 +595,6 @@ client.style_suggestions.create_style_suggestion(
 <dl>
 <dd>
 
-**file_upload:** `from __future__ import annotations
-
-core.File` — See core.File for more documentation
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **dialect:** `Dialects` — The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
     
 </dd>
@@ -606,6 +604,16 @@ core.File` — See core.File for more documentation
 <dd>
 
 **style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**file_upload:** `from __future__ import annotations
+
+core.File` — See core.File for more documentation
     
 </dd>
 </dl>
@@ -763,16 +771,6 @@ client.style_rewrites.create_style_rewrite(
 <dl>
 <dd>
 
-**file_upload:** `from __future__ import annotations
-
-core.File` — See core.File for more documentation
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **dialect:** `Dialects` — The language variant you'd like us to use for analysis. Choose from American English, British English, or other supported dialects.
     
 </dd>
@@ -782,6 +780,16 @@ core.File` — See core.File for more documentation
 <dd>
 
 **style_guide:** `str` — The style guide to follow for your content. You can use a style guide ID or choose from built-in options: `ap`, `chicago`, or `microsoft`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**file_upload:** `from __future__ import annotations
+
+core.File` — See core.File for more documentation
     
 </dd>
 </dl>

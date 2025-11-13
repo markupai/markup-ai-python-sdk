@@ -5,6 +5,7 @@ import typing
 from .. import core
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
+from ..types.base_style_guide_type import BaseStyleGuideType
 from ..types.style_guide_response import StyleGuideResponse
 from .raw_client import AsyncRawStyleGuidesClient, RawStyleGuidesClient
 
@@ -56,7 +57,12 @@ class StyleGuidesClient:
         return _response.data
 
     def create_style_guide(
-        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        file_upload: core.File,
+        name: str,
+        base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -68,6 +74,9 @@ class StyleGuidesClient:
 
         name : str
             A friendly name for your style guide to help you identify it later.
+
+        base_style_guide : typing.Optional[BaseStyleGuideType]
+            The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -89,7 +98,7 @@ class StyleGuidesClient:
         )
         """
         _response = self._raw_client.create_style_guide(
-            file_upload=file_upload, name=name, request_options=request_options
+            file_upload=file_upload, name=name, base_style_guide=base_style_guide, request_options=request_options
         )
         return _response.data
 
@@ -248,7 +257,12 @@ class AsyncStyleGuidesClient:
         return _response.data
 
     async def create_style_guide(
-        self, *, file_upload: core.File, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        file_upload: core.File,
+        name: str,
+        base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
         Create a new style guide that can be used in checks, suggestions, and rewrites.
@@ -260,6 +274,9 @@ class AsyncStyleGuidesClient:
 
         name : str
             A friendly name for your style guide to help you identify it later.
+
+        base_style_guide : typing.Optional[BaseStyleGuideType]
+            The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -289,7 +306,7 @@ class AsyncStyleGuidesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.create_style_guide(
-            file_upload=file_upload, name=name, request_options=request_options
+            file_upload=file_upload, name=name, base_style_guide=base_style_guide, request_options=request_options
         )
         return _response.data
 

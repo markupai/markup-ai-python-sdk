@@ -8,6 +8,7 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .types import (
         AnalysisScore,
+        BaseStyleGuideType,
         ClarityCategory,
         ClarityScore,
         ConfigOptions,
@@ -60,6 +61,7 @@ if typing.TYPE_CHECKING:
 _dynamic_imports: typing.Dict[str, str] = {
     "AnalysisScore": ".types",
     "AsyncMarkupAI": ".client",
+    "BaseStyleGuideType": ".types",
     "ClarityCategory": ".types",
     "ClarityScore": ".types",
     "ConfigOptions": ".types",
@@ -105,10 +107,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "WorkflowResponse": ".types",
     "WorkflowStatus": ".types",
     "__version__": ".version",
-    "style_checks": ".",
-    "style_guides": ".",
-    "style_rewrites": ".",
-    "style_suggestions": ".",
+    "style_checks": ".style_checks",
+    "style_guides": ".style_guides",
+    "style_rewrites": ".style_rewrites",
+    "style_suggestions": ".style_suggestions",
 }
 
 
@@ -118,8 +120,10 @@ def __getattr__(attr_name: str) -> typing.Any:
         raise AttributeError(f"No {attr_name} found in _dynamic_imports for module name -> {__name__}")
     try:
         module = import_module(module_name, __package__)
-        result = getattr(module, attr_name)
-        return result
+        if module_name == f".{attr_name}":
+            return module
+        else:
+            return getattr(module, attr_name)
     except ImportError as e:
         raise ImportError(f"Failed to import {attr_name} from {module_name}: {e}") from e
     except AttributeError as e:
@@ -134,6 +138,7 @@ def __dir__():
 __all__ = [
     "AnalysisScore",
     "AsyncMarkupAI",
+    "BaseStyleGuideType",
     "ClarityCategory",
     "ClarityScore",
     "ConfigOptions",

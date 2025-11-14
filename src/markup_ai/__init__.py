@@ -46,6 +46,7 @@ if typing.TYPE_CHECKING:
         WorkflowStatus,
     )
     from .errors import (
+        ConflictError,
         ContentTooLargeError,
         ForbiddenError,
         InternalServerError,
@@ -65,6 +66,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ClarityCategory": ".types",
     "ClarityScore": ".types",
     "ConfigOptions": ".types",
+    "ConflictError": ".errors",
     "ConsistencyCategory": ".types",
     "ConsistencyScore": ".types",
     "ContentTooLargeError": ".errors",
@@ -142,6 +144,7 @@ __all__ = [
     "ClarityCategory",
     "ClarityScore",
     "ConfigOptions",
+    "ConflictError",
     "ConsistencyCategory",
     "ConsistencyScore",
     "ContentTooLargeError",

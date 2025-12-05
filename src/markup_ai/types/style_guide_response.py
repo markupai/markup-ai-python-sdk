@@ -51,6 +51,11 @@ class StyleGuideResponse(UniversalBaseModel):
     The base style guide type that this style guide extends (AP, Chicago, or Microsoft).
     """
 
+    terminology_domain_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
     else:

@@ -115,6 +115,7 @@ class RawStyleGuidesClient:
         file_upload: core.File,
         name: str,
         base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.List[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StyleGuideResponse]:
         """
@@ -131,6 +132,9 @@ class RawStyleGuidesClient:
         base_style_guide : typing.Optional[BaseStyleGuideType]
             The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
+        terminology_domain_ids : typing.Optional[typing.List[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -145,6 +149,7 @@ class RawStyleGuidesClient:
             data={
                 "name": name,
                 "base_style_guide": base_style_guide,
+                "terminology_domain_ids": terminology_domain_ids,
             },
             files={
                 "file_upload": file_upload,
@@ -415,18 +420,26 @@ class RawStyleGuidesClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def update_style_guide(
-        self, style_guide_id: str, *, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        style_guide_id: str,
+        *,
+        name: typing.Optional[str] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[StyleGuideResponse]:
         """
-        Update the name of an existing style guide.
+        Update the name and/or terminology domain IDs of an existing style guide.
 
         Parameters
         ----------
         style_guide_id : str
             The ID of the style guide.
 
-        name : str
+        name : typing.Optional[str]
             The name of the style guide.
+
+        terminology_domain_ids : typing.Optional[typing.Sequence[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -441,6 +454,7 @@ class RawStyleGuidesClient:
             method="PATCH",
             json={
                 "name": name,
+                "terminology_domain_ids": terminology_domain_ids,
             },
             headers={
                 "content-type": "application/json",
@@ -620,6 +634,7 @@ class AsyncRawStyleGuidesClient:
         file_upload: core.File,
         name: str,
         base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.List[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StyleGuideResponse]:
         """
@@ -636,6 +651,9 @@ class AsyncRawStyleGuidesClient:
         base_style_guide : typing.Optional[BaseStyleGuideType]
             The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
 
+        terminology_domain_ids : typing.Optional[typing.List[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -650,6 +668,7 @@ class AsyncRawStyleGuidesClient:
             data={
                 "name": name,
                 "base_style_guide": base_style_guide,
+                "terminology_domain_ids": terminology_domain_ids,
             },
             files={
                 "file_upload": file_upload,
@@ -920,18 +939,26 @@ class AsyncRawStyleGuidesClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def update_style_guide(
-        self, style_guide_id: str, *, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        style_guide_id: str,
+        *,
+        name: typing.Optional[str] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[StyleGuideResponse]:
         """
-        Update the name of an existing style guide.
+        Update the name and/or terminology domain IDs of an existing style guide.
 
         Parameters
         ----------
         style_guide_id : str
             The ID of the style guide.
 
-        name : str
+        name : typing.Optional[str]
             The name of the style guide.
+
+        terminology_domain_ids : typing.Optional[typing.Sequence[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -946,6 +973,7 @@ class AsyncRawStyleGuidesClient:
             method="PATCH",
             json={
                 "name": name,
+                "terminology_domain_ids": terminology_domain_ids,
             },
             headers={
                 "content-type": "application/json",

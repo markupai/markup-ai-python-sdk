@@ -14,12 +14,18 @@ if typing.TYPE_CHECKING:
     from .consistency_category import ConsistencyCategory
     from .consistency_score import ConsistencyScore
     from .dialects import Dialects
+    from .domain_response import DomainResponse
+    from .domain_summary import DomainSummary
     from .error_response import ErrorResponse
     from .grammar_category import GrammarCategory
     from .grammar_score import GrammarScore
+    from .import_summary import ImportSummary
     from .issue import Issue
     from .issue_category import IssueCategory
+    from .matched_term import MatchedTerm
     from .original_content import OriginalContent
+    from .paginated_domains_response import PaginatedDomainsResponse
+    from .paginated_term_sets_response import PaginatedTermSetsResponse
     from .position import Position
     from .quality_score import QualityScore
     from .rewrite_content import RewriteContent
@@ -34,8 +40,17 @@ if typing.TYPE_CHECKING:
     from .suggestion import Suggestion
     from .suggestion_original_content import SuggestionOriginalContent
     from .suggestion_response import SuggestionResponse
+    from .term_create_request import TermCreateRequest
+    from .term_detail import TermDetail
+    from .term_item import TermItem
     from .term_replace_category import TermReplaceCategory
+    from .term_response import TermResponse
+    from .term_set_response import TermSetResponse
+    from .term_set_result import TermSetResult
+    from .term_set_with_terms import TermSetWithTerms
+    from .term_type import TermType
     from .terminology_score import TerminologyScore
+    from .terminology_search_response import TerminologySearchResponse
     from .tone_category import ToneCategory
     from .tone_score import ToneScore
     from .tones import Tones
@@ -52,12 +67,18 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ConsistencyCategory": ".consistency_category",
     "ConsistencyScore": ".consistency_score",
     "Dialects": ".dialects",
+    "DomainResponse": ".domain_response",
+    "DomainSummary": ".domain_summary",
     "ErrorResponse": ".error_response",
     "GrammarCategory": ".grammar_category",
     "GrammarScore": ".grammar_score",
+    "ImportSummary": ".import_summary",
     "Issue": ".issue",
     "IssueCategory": ".issue_category",
+    "MatchedTerm": ".matched_term",
     "OriginalContent": ".original_content",
+    "PaginatedDomainsResponse": ".paginated_domains_response",
+    "PaginatedTermSetsResponse": ".paginated_term_sets_response",
     "Position": ".position",
     "QualityScore": ".quality_score",
     "RewriteContent": ".rewrite_content",
@@ -72,8 +93,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Suggestion": ".suggestion",
     "SuggestionOriginalContent": ".suggestion_original_content",
     "SuggestionResponse": ".suggestion_response",
+    "TermCreateRequest": ".term_create_request",
+    "TermDetail": ".term_detail",
+    "TermItem": ".term_item",
     "TermReplaceCategory": ".term_replace_category",
+    "TermResponse": ".term_response",
+    "TermSetResponse": ".term_set_response",
+    "TermSetResult": ".term_set_result",
+    "TermSetWithTerms": ".term_set_with_terms",
+    "TermType": ".term_type",
     "TerminologyScore": ".terminology_score",
+    "TerminologySearchResponse": ".terminology_search_response",
     "ToneCategory": ".tone_category",
     "ToneScore": ".tone_score",
     "Tones": ".tones",
@@ -114,12 +144,18 @@ __all__ = [
     "ConsistencyCategory",
     "ConsistencyScore",
     "Dialects",
+    "DomainResponse",
+    "DomainSummary",
     "ErrorResponse",
     "GrammarCategory",
     "GrammarScore",
+    "ImportSummary",
     "Issue",
     "IssueCategory",
+    "MatchedTerm",
     "OriginalContent",
+    "PaginatedDomainsResponse",
+    "PaginatedTermSetsResponse",
     "Position",
     "QualityScore",
     "RewriteContent",
@@ -134,8 +170,17 @@ __all__ = [
     "Suggestion",
     "SuggestionOriginalContent",
     "SuggestionResponse",
+    "TermCreateRequest",
+    "TermDetail",
+    "TermItem",
     "TermReplaceCategory",
+    "TermResponse",
+    "TermSetResponse",
+    "TermSetResult",
+    "TermSetWithTerms",
+    "TermType",
     "TerminologyScore",
+    "TerminologySearchResponse",
     "ToneCategory",
     "ToneScore",
     "Tones",

@@ -13,6 +13,7 @@ if typing.TYPE_CHECKING:
     from .style_guides.client import AsyncStyleGuidesClient, StyleGuidesClient
     from .style_rewrites.client import AsyncStyleRewritesClient, StyleRewritesClient
     from .style_suggestions.client import AsyncStyleSuggestionsClient, StyleSuggestionsClient
+    from .terminology.client import AsyncTerminologyClient, TerminologyClient
 
 
 class MarkupAI:
@@ -84,6 +85,7 @@ class MarkupAI:
         self._style_checks: typing.Optional[StyleChecksClient] = None
         self._style_suggestions: typing.Optional[StyleSuggestionsClient] = None
         self._style_rewrites: typing.Optional[StyleRewritesClient] = None
+        self._terminology: typing.Optional[TerminologyClient] = None
 
     @property
     def style_guides(self):
@@ -116,6 +118,14 @@ class MarkupAI:
 
             self._style_rewrites = StyleRewritesClient(client_wrapper=self._client_wrapper)
         return self._style_rewrites
+
+    @property
+    def terminology(self):
+        if self._terminology is None:
+            from .terminology.client import TerminologyClient  # noqa: E402
+
+            self._terminology = TerminologyClient(client_wrapper=self._client_wrapper)
+        return self._terminology
 
 
 class AsyncMarkupAI:
@@ -187,6 +197,7 @@ class AsyncMarkupAI:
         self._style_checks: typing.Optional[AsyncStyleChecksClient] = None
         self._style_suggestions: typing.Optional[AsyncStyleSuggestionsClient] = None
         self._style_rewrites: typing.Optional[AsyncStyleRewritesClient] = None
+        self._terminology: typing.Optional[AsyncTerminologyClient] = None
 
     @property
     def style_guides(self):
@@ -219,6 +230,14 @@ class AsyncMarkupAI:
 
             self._style_rewrites = AsyncStyleRewritesClient(client_wrapper=self._client_wrapper)
         return self._style_rewrites
+
+    @property
+    def terminology(self):
+        if self._terminology is None:
+            from .terminology.client import AsyncTerminologyClient  # noqa: E402
+
+            self._terminology = AsyncTerminologyClient(client_wrapper=self._client_wrapper)
+        return self._terminology
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: MarkupAIEnvironment) -> str:

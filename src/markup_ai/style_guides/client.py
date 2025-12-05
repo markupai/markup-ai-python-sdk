@@ -62,6 +62,7 @@ class StyleGuidesClient:
         file_upload: core.File,
         name: str,
         base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.List[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
@@ -77,6 +78,9 @@ class StyleGuidesClient:
 
         base_style_guide : typing.Optional[BaseStyleGuideType]
             The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
+
+        terminology_domain_ids : typing.Optional[typing.List[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -98,7 +102,11 @@ class StyleGuidesClient:
         )
         """
         _response = self._raw_client.create_style_guide(
-            file_upload=file_upload, name=name, base_style_guide=base_style_guide, request_options=request_options
+            file_upload=file_upload,
+            name=name,
+            base_style_guide=base_style_guide,
+            terminology_domain_ids=terminology_domain_ids,
+            request_options=request_options,
         )
         return _response.data
 
@@ -168,18 +176,26 @@ class StyleGuidesClient:
         return _response.data
 
     def update_style_guide(
-        self, style_guide_id: str, *, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        style_guide_id: str,
+        *,
+        name: typing.Optional[str] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
-        Update the name of an existing style guide.
+        Update the name and/or terminology domain IDs of an existing style guide.
 
         Parameters
         ----------
         style_guide_id : str
             The ID of the style guide.
 
-        name : str
+        name : typing.Optional[str]
             The name of the style guide.
+
+        terminology_domain_ids : typing.Optional[typing.Sequence[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -198,10 +214,11 @@ class StyleGuidesClient:
         )
         client.style_guides.update_style_guide(
             style_guide_id="style_guide_id",
-            name="name",
         )
         """
-        _response = self._raw_client.update_style_guide(style_guide_id, name=name, request_options=request_options)
+        _response = self._raw_client.update_style_guide(
+            style_guide_id, name=name, terminology_domain_ids=terminology_domain_ids, request_options=request_options
+        )
         return _response.data
 
 
@@ -262,6 +279,7 @@ class AsyncStyleGuidesClient:
         file_upload: core.File,
         name: str,
         base_style_guide: typing.Optional[BaseStyleGuideType] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.List[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
@@ -277,6 +295,9 @@ class AsyncStyleGuidesClient:
 
         base_style_guide : typing.Optional[BaseStyleGuideType]
             The base style guide to extend (AP, Chicago, or Microsoft). If not provided, the style guide will be created from scratch.
+
+        terminology_domain_ids : typing.Optional[typing.List[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -306,7 +327,11 @@ class AsyncStyleGuidesClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.create_style_guide(
-            file_upload=file_upload, name=name, base_style_guide=base_style_guide, request_options=request_options
+            file_upload=file_upload,
+            name=name,
+            base_style_guide=base_style_guide,
+            terminology_domain_ids=terminology_domain_ids,
+            request_options=request_options,
         )
         return _response.data
 
@@ -392,18 +417,26 @@ class AsyncStyleGuidesClient:
         return _response.data
 
     async def update_style_guide(
-        self, style_guide_id: str, *, name: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        style_guide_id: str,
+        *,
+        name: typing.Optional[str] = OMIT,
+        terminology_domain_ids: typing.Optional[typing.Sequence[str]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> StyleGuideResponse:
         """
-        Update the name of an existing style guide.
+        Update the name and/or terminology domain IDs of an existing style guide.
 
         Parameters
         ----------
         style_guide_id : str
             The ID of the style guide.
 
-        name : str
+        name : typing.Optional[str]
             The name of the style guide.
+
+        terminology_domain_ids : typing.Optional[typing.Sequence[str]]
+            List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -427,13 +460,12 @@ class AsyncStyleGuidesClient:
         async def main() -> None:
             await client.style_guides.update_style_guide(
                 style_guide_id="style_guide_id",
-                name="name",
             )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.update_style_guide(
-            style_guide_id, name=name, request_options=request_options
+            style_guide_id, name=name, terminology_domain_ids=terminology_domain_ids, request_options=request_options
         )
         return _response.data

@@ -6,12 +6,9 @@ ConsistencyCategory = typing.Union[
     typing.Literal[
         "Consistent Punctuation",
         "Consistent Capitalization",
-        "Preferred Spelling and Grammar",
         "Numbers, Dates, and Times",
         "Inclusive Language",
-        "Brand Voice",
         "Special Style Guide Requirements",
-        "Clarity and Readability",
         "other",
     ],
     typing.Any,

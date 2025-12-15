@@ -6,6 +6,7 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 from .issue_category import IssueCategory
 from .position import Position
+from .severity import Severity
 from .subcategory import Subcategory
 
 
@@ -31,6 +32,7 @@ class Suggestion(UniversalBaseModel):
     """
 
     category: typing.Optional[IssueCategory] = None
+    severity: Severity
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

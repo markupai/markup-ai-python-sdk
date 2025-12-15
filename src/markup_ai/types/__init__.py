@@ -31,6 +31,7 @@ if typing.TYPE_CHECKING:
     from .rewrite_content import RewriteContent
     from .rewrite_response import RewriteResponse
     from .score_output import ScoreOutput
+    from .severity import Severity
     from .style_check_response import StyleCheckResponse
     from .style_guide import StyleGuide
     from .style_guide_response import StyleGuideResponse
@@ -84,6 +85,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "RewriteContent": ".rewrite_content",
     "RewriteResponse": ".rewrite_response",
     "ScoreOutput": ".score_output",
+    "Severity": ".severity",
     "StyleCheckResponse": ".style_check_response",
     "StyleGuide": ".style_guide",
     "StyleGuideResponse": ".style_guide_response",
@@ -161,6 +163,7 @@ __all__ = [
     "RewriteContent",
     "RewriteResponse",
     "ScoreOutput",
+    "Severity",
     "StyleCheckResponse",
     "StyleGuide",
     "StyleGuideResponse",

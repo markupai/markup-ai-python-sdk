@@ -1,43 +1,86 @@
 name: ci
 
-on: [push]
+on:
+  push:
+  pull_request:
+
 jobs:
+  extract-poetry-version:
+    runs-on: ubuntu-latest
+    outputs:
+      poetry-version: ${{ steps.extract.outputs.poetry_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Extract Poetry version
+        id: extract
+        run: |
+          version=$(head -n 1 poetry.lock | grep -oE 'Poetry [0-9]+\.[0-9]+\.[0-9]+' | awk '{print $2}')
+          echo "poetry_version=$version" >> $GITHUB_OUTPUT
+
   compile:
     runs-on: ubuntu-latest
+    needs: extract-poetry-version
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Set up python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.13
       - name: Bootstrap poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python - -y --version 1.5.1
+          curl -sSL https://install.python-poetry.org | python - -y --version ${{ needs.extract-poetry-version.outputs.poetry-version }}
       - name: Install dependencies
         run: poetry install
       - name: Compile
         run: poetry run mypy .
+
   test:
     runs-on: ubuntu-latest
+    needs: extract-poetry-version
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Set up python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.13
       - name: Bootstrap poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python - -y --version 1.5.1
+          curl -sSL https://install.python-poetry.org | python - -y --version ${{ needs.extract-poetry-version.outputs.poetry-version }}
       - name: Install dependencies
         run: poetry install
+      - name: Run util tests
+        run: poetry run pytest -rP tests/utils
+      - name: Run custom tests
+        run: poetry run pytest -rP tests/custom
 
-      - name: Test
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: [ extract-poetry-version, compile, test ]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+      - name: Bootstrap poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python - -y --version ${{ needs.extract-poetry-version.outputs.poetry-version }}
+      - name: Install integration dependencies
+        run: |
+          cd tests/integration
+          poetry install
+      - name: Run integration tests
+        env:
+          TOKEN: ${{ secrets.PROD_API_TOKEN }}
         run: poetry run pytest -rP .
 
   publish:
-    needs: [compile, test]
+    needs: [ extract-poetry-version, compile, test ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
@@ -46,10 +89,10 @@ jobs:
       - name: Set up python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.13
       - name: Bootstrap poetry
         run: |
-          curl -sSL https://install.python-poetry.org | python - -y --version 1.5.1
+          curl -sSL https://install.python-poetry.org | python - -y --version ${{ needs.extract-poetry-version.outputs.poetry-version }}
       - name: Install dependencies
         run: poetry install
       - name: Publish to pypi

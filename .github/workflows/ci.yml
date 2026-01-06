@@ -77,7 +77,7 @@ jobs:
       - name: Run integration tests
         env:
           TOKEN: ${{ secrets.PROD_API_TOKEN }}
-        run: poetry run pytest -rP .
+        run: poetry run pytest -rP tests/integration
 
   publish:
     needs: [ extract-poetry-version, compile, test ]

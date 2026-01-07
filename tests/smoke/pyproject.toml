@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "markup-ai-integration-tests"
+name = "markup-ai-smoke-tests"
 version = "0.1.0"
-description = "Integration test suite for Markup AI Python SDK"
+description = "Test suite (using pytest-bdd) to validate main functionality of the SDK"
 authors = []
 package-mode = false
 

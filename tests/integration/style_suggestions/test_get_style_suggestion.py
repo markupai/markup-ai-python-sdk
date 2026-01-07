@@ -6,32 +6,39 @@ from pytest_bdd import given, parsers, scenarios, then, when
 
 from markup_ai import MarkupAI, SuggestionResponse, WorkflowResponse
 
-FEATURE_PATH = os.path.join(os.path.dirname(__file__), "../style_suggestions/get_style_suggestion.feature")
+FEATURE_PATH = os.path.join(os.path.dirname(__file__),
+                            "../style_suggestions/get_style_suggestion.feature")
 scenarios(FEATURE_PATH)
 
 
 @given("a style suggestion has been created", target_fixture="workflow_response")
-def create_style_suggestion(client: MarkupAI, sample_file: BufferedReader) -> WorkflowResponse:
+def create_style_suggestion(client: MarkupAI,
+                            sample_file: BufferedReader) -> WorkflowResponse:
     return client.style_suggestions.create_style_suggestion(
         dialect="american_english", file_upload=sample_file, style_guide="ap"
     )
 
 
 @when(
-    parsers.parse("I get a style suggestion with an existing workflow_id without polling"),
+    parsers.parse(
+        "I get a style suggestion with an existing workflow_id without polling"),
     target_fixture="get_style_suggestion_response",
 )
-def get_style_suggestion_without_polling(client: MarkupAI, workflow_response: WorkflowResponse) -> SuggestionResponse:
-    return client.style_suggestions.get_style_suggestion(workflow_id=workflow_response.workflow_id)
+def get_style_suggestion_without_polling(client: MarkupAI,
+                                         workflow_response: WorkflowResponse) -> SuggestionResponse:
+    return client.style_suggestions.get_style_suggestion(
+        workflow_id=workflow_response.workflow_id)
 
 
 @when(
     parsers.parse("I get a style suggestion with an existing workflow_id with polling"),
     target_fixture="get_style_suggestion_response",
 )
-def get_style_suggestion_with_polling(client: MarkupAI, workflow_response: WorkflowResponse) -> SuggestionResponse:
+def get_style_suggestion_with_polling(client: MarkupAI,
+                                      workflow_response: WorkflowResponse) -> SuggestionResponse:
     return get_workflow_with_polling(
-        get_workflow_fn=client.style_suggestions.get_style_suggestion, workflow_id=workflow_response.workflow_id
+        get_workflow_fn=client.style_suggestions.get_style_suggestion,
+        workflow_id=workflow_response.workflow_id
     )
 
 
@@ -44,7 +51,6 @@ def check_style_suggestion_response(get_style_suggestion_response: SuggestionRes
 
 
 @then("the workflow info should be valid")
-def check_style_suggestion_workflow_info(get_style_suggestion_response: SuggestionResponse):
+def check_style_suggestion_workflow_info(
+        get_style_suggestion_response: SuggestionResponse):
     check_workflow_info(workflow_info=get_style_suggestion_response.workflow)
-
-    # TODO: More detailed checks can be added here for config and original content

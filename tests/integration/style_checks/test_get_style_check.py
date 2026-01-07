@@ -6,30 +6,38 @@ from pytest_bdd import given, parsers, scenarios, then, when
 
 from markup_ai import MarkupAI, StyleCheckResponse, WorkflowResponse
 
-FEATURE_PATH = os.path.join(os.path.dirname(__file__), "../style_checks/get_style_check.feature")
+FEATURE_PATH = os.path.join(os.path.dirname(__file__),
+                            "../style_checks/get_style_check.feature")
 scenarios(FEATURE_PATH)
 
 
 @given("a style check has been created", target_fixture="workflow_response")
-def create_style_check(client: MarkupAI, sample_file: BufferedReader) -> WorkflowResponse:
-    return client.style_checks.create_style_check(dialect="american_english", file_upload=sample_file, style_guide="ap")
+def create_style_check(client: MarkupAI,
+                       sample_file: BufferedReader) -> WorkflowResponse:
+    return client.style_checks.create_style_check(dialect="american_english",
+                                                  file_upload=sample_file,
+                                                  style_guide="ap")
 
 
 @when(
     parsers.parse("I get a style check with an existing workflow_id without polling"),
     target_fixture="get_style_check_response",
 )
-def get_style_check_without_polling(client: MarkupAI, workflow_response: WorkflowResponse) -> StyleCheckResponse:
-    return client.style_checks.get_style_check(workflow_id=workflow_response.workflow_id)
+def get_style_check_without_polling(client: MarkupAI,
+                                    workflow_response: WorkflowResponse) -> StyleCheckResponse:
+    return client.style_checks.get_style_check(
+        workflow_id=workflow_response.workflow_id)
 
 
 @when(
     parsers.parse("I get a style check with an existing workflow_id with polling"),
     target_fixture="get_style_check_response",
 )
-def get_style_check_with_polling(client: MarkupAI, workflow_response: WorkflowResponse) -> StyleCheckResponse:
+def get_style_check_with_polling(client: MarkupAI,
+                                 workflow_response: WorkflowResponse) -> StyleCheckResponse:
     return get_workflow_with_polling(
-        get_workflow_fn=client.style_checks.get_style_check, workflow_id=workflow_response.workflow_id
+        get_workflow_fn=client.style_checks.get_style_check,
+        workflow_id=workflow_response.workflow_id
     )
 
 
@@ -44,5 +52,3 @@ def check_style_check_response(get_style_check_response: StyleCheckResponse):
 @then("the workflow info should be valid")
 def check_style_check_workflow_info(get_style_check_response: StyleCheckResponse):
     check_workflow_info(workflow_info=get_style_check_response.workflow)
-
-    # TODO: More detailed checks can be added here for config and original content

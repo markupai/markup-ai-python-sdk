@@ -56,6 +56,11 @@ class StyleGuideResponse(UniversalBaseModel):
     List of domain IDs to filter terminology searches by. NULL or empty list means no filtering.
     """
 
+    has_tone_prompt: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Whether this style guide has a tone prompt defined.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
     else:

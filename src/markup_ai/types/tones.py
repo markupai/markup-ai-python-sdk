@@ -4,7 +4,15 @@ import typing
 
 Tones = typing.Union[
     typing.Literal[
-        "academic", "confident", "conversational", "empathetic", "engaging", "friendly", "professional", "technical"
+        "academic",
+        "confident",
+        "conversational",
+        "empathetic",
+        "engaging",
+        "friendly",
+        "professional",
+        "style_guide",
+        "technical",
     ],
     typing.Any,
 ]

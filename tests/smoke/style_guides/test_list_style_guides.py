@@ -1,19 +1,27 @@
 import os
 
-from pytest_bdd import scenarios, then, when
+from pytest_bdd import scenario, then, when
 
 from markup_ai import MarkupAI, StyleGuideResponse
 
 FEATURE_PATH = os.path.join(os.path.dirname(__file__),
                             "../style_guides/list_style_guides.feature")
-scenarios(FEATURE_PATH)
 
 
+# Scenarios
+@scenario(FEATURE_PATH, "List all style guides")
+def test_list_all_style_guides():
+    """Test scenario entrypoint"""
+    pass
+
+
+# When Steps
 @when("I list all style guides", target_fixture="list_style_guides_response")
 def list_style_guides(client: MarkupAI) -> list[StyleGuideResponse]:
     return client.style_guides.list_style_guides()
 
 
+# Then Steps
 @then("the response should be a list of style guides")
 def check_style_guides_list(list_style_guides_response: list[StyleGuideResponse]):
     assert len(list_style_guides_response) > 0

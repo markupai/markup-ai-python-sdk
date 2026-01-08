@@ -1,13 +1,20 @@
 import os
 from io import BufferedReader
 from markup_ai import MarkupAI
-from pytest_bdd import parsers, scenarios, when
+from pytest_bdd import parsers, scenario, when
 
 FEATURE_PATH = os.path.join(os.path.dirname(__file__),
                             "../style_suggestions/create_style_suggestion.feature")
-scenarios(FEATURE_PATH)
 
 
+# Scenarios
+@scenario(FEATURE_PATH, "Create a style suggestion with valid parameters")
+def test_create_style_suggestion_with_valid_parameters():
+    """Test scenario entrypoint"""
+    pass
+
+
+# When Steps
 @when(parsers.parse(
     'I create a style suggestion with dialect "{dialect}" and style_guide "{style_guide}"'),
     target_fixture="workflow_response")

@@ -2,15 +2,28 @@ import os
 from io import BufferedReader
 
 from conftest import check_workflow_info, get_workflow_with_polling
-from pytest_bdd import given, parsers, scenarios, then, when
+from pytest_bdd import given, parsers, scenario, then, when
 
 from markup_ai import MarkupAI, SuggestionResponse, WorkflowResponse
 
 FEATURE_PATH = os.path.join(os.path.dirname(__file__),
                             "../style_suggestions/get_style_suggestion.feature")
-scenarios(FEATURE_PATH)
 
 
+# Scenarios
+@scenario(FEATURE_PATH, "Get style suggestion result by workflow_id without polling")
+def test_get_style_suggestion_result_by_workflow_id_without_polling():
+    """Test scenario entrypoint"""
+    pass
+
+
+@scenario(FEATURE_PATH, "Get style suggestion result by workflow_id with polling")
+def test_get_style_suggestion_result_by_workflow_id_with_polling():
+    """Test scenario entrypoint"""
+    pass
+
+
+# Given Steps
 @given("a style suggestion has been created", target_fixture="workflow_response")
 def create_style_suggestion(client: MarkupAI,
                             sample_file: BufferedReader) -> WorkflowResponse:
@@ -19,6 +32,7 @@ def create_style_suggestion(client: MarkupAI,
     )
 
 
+# When Steps
 @when(
     parsers.parse(
         "I get a style suggestion with an existing workflow_id without polling"),
@@ -42,6 +56,7 @@ def get_style_suggestion_with_polling(client: MarkupAI,
     )
 
 
+# Then Steps
 @then("the style suggestion response should return a style suggestion")
 def check_style_suggestion_response(get_style_suggestion_response: SuggestionResponse):
     assert isinstance(get_style_suggestion_response, SuggestionResponse)

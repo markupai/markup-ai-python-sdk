@@ -1,15 +1,22 @@
 import os
 from io import BufferedReader
 
-from pytest_bdd import parsers, scenarios, when
+from pytest_bdd import parsers, scenario, when
 
 from markup_ai import MarkupAI, WorkflowResponse
 
 FEATURE_PATH = os.path.join(os.path.dirname(__file__),
                             "../style_checks/create_style_check.feature")
-scenarios(FEATURE_PATH)
 
 
+# Scenarios
+@scenario(FEATURE_PATH, "Create a style check with valid parameters")
+def test_create_style_check_with_valid_parameters():
+    """Test scenario entrypoint"""
+    pass
+
+
+# When Steps
 @when(parsers.parse(
     'I create a style check with dialect "{dialect}" and style_guide "{style_guide}"'),
     target_fixture="workflow_response")

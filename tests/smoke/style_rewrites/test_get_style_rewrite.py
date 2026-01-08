@@ -2,15 +2,28 @@ import os
 from io import BufferedReader
 
 from conftest import check_workflow_info, get_workflow_with_polling
-from pytest_bdd import given, parsers, scenarios, then, when
+from pytest_bdd import given, parsers, scenario, then, when
 
 from markup_ai import MarkupAI, RewriteResponse, WorkflowResponse
 
 FEATURE_PATH = os.path.join(os.path.dirname(__file__),
                             "../style_rewrites/get_style_rewrite.feature")
-scenarios(FEATURE_PATH)
 
 
+# Scenarios
+@scenario(FEATURE_PATH, "Get style rewrite result by workflow_id without polling")
+def test_get_style_rewrite_result_by_workflow_id_without_polling():
+    """Test scenario entrypoint"""
+    pass
+
+
+@scenario(FEATURE_PATH, "Get style rewrite result by workflow_id with polling")
+def test_get_style_rewrite_result_by_workflow_id_with_polling():
+    """Test scenario entrypoint"""
+    pass
+
+
+# Given Steps
 @given("a style rewrite has been created", target_fixture="workflow_response")
 def create_style_rewrite(client: MarkupAI,
                          sample_file: BufferedReader) -> WorkflowResponse:
@@ -19,6 +32,7 @@ def create_style_rewrite(client: MarkupAI,
     )
 
 
+# When Steps
 @when(
     parsers.parse("I get a style rewrite with an existing workflow_id without polling"),
     target_fixture="get_style_rewrite_response",
@@ -41,6 +55,7 @@ def get_style_rewrite_with_polling(client: MarkupAI,
     )
 
 
+# Then Steps
 @then("the style rewrite response should return a style rewrite")
 def check_style_rewrite_response(get_style_rewrite_response: RewriteResponse):
     assert isinstance(get_style_rewrite_response, RewriteResponse)
